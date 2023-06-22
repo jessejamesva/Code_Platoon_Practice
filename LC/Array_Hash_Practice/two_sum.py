@@ -8,7 +8,7 @@ You can return the answer in any order.
 
 
 
-def twoSum(self, nums: List[int], target: int) -> List[int]:
+def twoSum(nums, target):
     for i in nums:
         second_num = target - i
 
