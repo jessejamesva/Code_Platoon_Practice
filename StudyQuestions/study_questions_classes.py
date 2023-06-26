@@ -5,6 +5,28 @@ class User:
         self._question_bank = {}
         self._next_question_id = 0
 
+
+
+    # @property
+    # def question_id(self):
+    #     return self._question_id   
+    
+    # @question_id.setter   
+    # def change_question_id(self, value):
+    #     self.question_id = value
+
+    # @question_id.setter
+    # def reset_question_id(self):
+    #     self.question_id = 0
+
+    
+    # library.question_id #id
+    # library.change_question_id = 17 #.change_question_id(17)
+    # library.reset_question_id # reset to zero
+
+
+
+
     def get_username(self):
         return self._username
 
@@ -71,8 +93,14 @@ class Library:
         self._members[user_obj.get_username()] = user_obj
         return f"{user_obj.get_username()} added to library"
 
-    def add_question(self, user, subject, question, answer):
+    def add_question(self, q_dict) #user, subject, question, answer):
+        user = q_dict['name']
+        subject = q_dict['subject']
+        question = q_dict['question']
+        answer = q_dict['answer']
+        
         if user in self._members:
+            
             question_id = self._members[user].set_next_question_id()
             question_obj = question_id
             question_obj = Question(question_id, subject, question, answer)
@@ -91,8 +119,16 @@ lib.add_lib_user(p2)
 lib.add_lib_user(p3)
 
 print(lib.get_members())
+question1_info = "Jesse", "Math", "What is one plus one?", "Two"
+question_dict = {
+    'name': 'Jesse',
+    'subject' : 'Math',
+    'question': 'What is one plus one',
+    'answer' : "Two"
+}
 
-lib.add_question("Jesse", "Math", "What is one plus one?", "Two")
+
+lib.add_question(question_dict)
 lib.add_question("Jesse", "Math", "What is two plus two?", "Three")
 lib.add_question("Jesse", "History", "What is today?",
                  "Monday - Boo Mondays!!!")
